@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Arquivos</title>
+</head>
+<body>
+ {% if linhas %}
+<p> Lista de Registros no Arquivo</p>
+ {% else %}
+ <p> Lista de Arquivos</p>
+ {% endif %}
+<hr>
+    {% for file in files %}
+      <p> <a href="mostra_arquivo/{{ file }}">{{ file }}</a> <p>
+    {% endfor %}
+
+    {% for lin in linhas %}
+      <p> {{ lin }} <p>
+    {% endfor %}
+
+
+</body>
+</html>
