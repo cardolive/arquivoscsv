@@ -39,7 +39,6 @@ def allowed_file(filename):
 
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
-	print("chegou aqui")
 	if request.method == 'POST':
 		# check if the post request has the file part
 		if 'file' not in request.files:
@@ -66,11 +65,13 @@ def uploaded_file(filename):
 	# csv_to_dic(filename)
 	return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-@app.route('/mostra_arquivo/<filename>')
-def arquivo_processado(filename):
-	# Create variable for uploaded file
-	# arquivo = open("uploads/" + filename, "r")
 
+@app.route('/mostra_arquivo', methods=['POST'])
+def arquivo_processado():
+
+	filename = request.form['filename']
+	tipo = request.form['tipo']
+	print(filename, tipo)
 	line_count = 0
 	chaves = []
 	linhas = []
@@ -90,18 +91,14 @@ def arquivo_processado(filename):
 
 	print(f'Total de linhas processadas: {line_count}.')
 
-	print("linhas: ", len(linhas))
-	col = 0
 	for lin in linhas:
-		print(lin)
-		col = len(lin)
-	print("colunas: ", col)
+		print(lin[:10])
+
 	return render_template('arquivos.html', linhas=linhas)
 
 
 @app.route('/arquivos')
 def arquivos():
-	#files = os.listdir(app.config['UPLOAD_FOLDER'])
 	lst_files = os.listdir(UPLOAD_FOLDER)
 	print(lst_files)
 	return render_template('arquivos.html', files=lst_files)

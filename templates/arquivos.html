@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Arquivos</title>
+	<meta charset="UTF-8">
+	<title>Arquivos</title>
 </head>
 <body>
- {% if linhas %}
-<p> Lista de Registros no Arquivo</p>
- {% else %}
- <p> Lista de Arquivos</p>
- {% endif %}
+ {% if files %}
+<p> Lista de Arquivos</p>
+
 <hr>
-    {% for file in files %}
-      <p> <a href="mostra_arquivo/{{ file }}">{{ file }}</a> <p>
-    {% endfor %}
+ <table><tr>
+	 <td>Arq. Nome</td><td>Tipo</td></tr>
+ <form accept-charset="x-iso-8859-11" action="mostra_arquivo" method="post">
+	{% for file in files %}
+	 <tr><td>{{ file }}</td>
+			<td>
+			<select id="tipo" name="tipo">
+				<option value="emp">Empenhos</option>
+				<option value="dia">Diárias</option>
+				<option value="liq">Liquidações</option>
+				<option value="rec">Recibos</option>
+				<option value="rmc">Remanejamento a crédito</option>
+				<option value="rmd">Remanejamento a debito</option>
+				<option value="0" selected>Sem definição</option>
+			</select>
+				<input hidden name="filename" value="{{ file }}"/>
+			 <input type = "submit" value="ok"/>
+			</td></tr>
 
-    {% for lin in linhas %}
-      <p> {{ lin }} <p>
-    {% endfor %}
 
+	{% endfor %}
+
+ </form>
+	 <table>
+		 {% else %}
+		 <p> Lista de Registros no Arquivo</p>
+
+	{% for lin in linhas %}
+	  <p> {{ lin[:8] }} <p>
+	{% endfor %}
+		 {% endif %}
 
 </body>
 </html>
