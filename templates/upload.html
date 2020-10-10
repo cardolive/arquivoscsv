@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Carrega Arquivo</title>
-</head>
-
-   <body>
+{% extends "layout.html" %}
+{% block content %}
+  <div class="upload">
+      <h1>Carrega Arquivo</h1>
       <form enctype = "multipart/form-data" method = "POST">
-         <input accept=".csv,.txt" name = "file" type = "file"/>
-         <input type = "submit" value="Carrega"/>
-      </form>
-   <hr>
-    <a href="arquivos">Lista arquivos carregados</a>
-   </body>
+          <input accept=".csv,.txt" name = "file" type = "file"/>
+          <input type = "submit" value="Carrega"/>
+       </form>
+  </div>
+{% endblock %}
 
-</html>
+

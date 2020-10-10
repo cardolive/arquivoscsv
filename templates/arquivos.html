@@ -1,45 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<meta charset="UTF-8">
-	<title>Arquivos</title>
-</head>
-<body>
- {% if files %}
-<p> Lista de Arquivos</p>
+{% extends "layout.html" %}
+{% block content %}
+  <div class="arquivos">
 
-<hr>
- <table><tr>
-	 <td>Arq. Nome</td><td>Tipo</td></tr>
- <form accept-charset="x-iso-8859-11" action="mostra_arquivo" method="post">
-	{% for file in files %}
-	 <tr><td>{{ file }}</td>
-			<td>
-			<select id="tipo" name="tipo">
-				<option value="emp">Empenhos</option>
-				<option value="dia">Diárias</option>
-				<option value="liq">Liquidações</option>
-				<option value="rec">Recibos</option>
-				<option value="rmc">Remanejamento a crédito</option>
-				<option value="rmd">Remanejamento a debito</option>
-				<option value="0" selected>Sem definição</option>
-			</select>
-				<input hidden name="filename" value="{{ file }}"/>
-			 <input type = "submit" value="ok"/>
-			</td></tr>
+	  {% if files %}
+	 <p> Lista de Arquivos</p>
+
+	 <hr>
+	  <table id="t01"><tr>
+	 	 <th>Arq. Nome</th><th>Tipo</th></tr>
+	  <form accept-charset="x-iso-8859-11" action="mostra_arquivo" method="post">
+	 	{% for file in files %}
+	 	 <tr><td>{{ file }}</td>
+	 			<td>
+	 			<select id="tipo" name="tipo">
+	 				<option value="emp">Empenhos</option>
+	 				<option value="dia">Diárias</option>
+	 				<option value="liq">Liquidações</option>
+	 				<option value="rec">Recibos</option>
+	 				<option value="rmc">Remanejamento a crédito</option>
+	 				<option value="rmd">Remanejamento a debito</option>
+	 				<option value="0" selected>Sem definição</option>
+	 			</select>
+	 				<input hidden name="filename" value="{{ file }}"/>
+	 			 <input type = "submit" value="ok"/>
+	 			</td></tr>
 
 
-	{% endfor %}
+	 	{% endfor %}
 
- </form>
-	 <table>
-		 {% else %}
-		 <p> Lista de Registros no Arquivo</p>
+	  </form>
+	  </table>
+	 		 {% else %}
+	  <table>
+	  <tr ><th>Registros Carregados</th></tr>
+	 	{% for lin in linhas %}
+	 	 <tr><td> {{ lin[:8] }} </td></tr>
+	 	{% endfor %}
 
-	{% for lin in linhas %}
-	  <p> {{ lin[:8] }} <p>
-	{% endfor %}
-		 {% endif %}
+	  </table>
+	 		 {% endif %}
 
-</body>
-</html>
+  </div>
+{% endblock %}

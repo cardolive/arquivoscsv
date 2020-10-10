@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+   	table {
+   	  width:100%;
+   	}
+   	table, th, td {
+   	  border: 1px solid black;
+   	  border-collapse: collapse;
+   	}
+   	th, td {
+   	  padding: 15px;
+   	}
+   	th{
+   		text-align: center;
+   	}
+   	#t01 {
+   		 width:50%;
+   	}
+   	#t01 tr:nth-child(even) {
+   	  background-color: #eee;
+   	}
+   	#t01 tr:nth-child(odd) {
+   	 background-color: #fff;
+   	}
+   	#t01 th {
+   	  background-color: gray;
+   	  color: white;
+   	}
+   	</style>
+
+</head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Assintencia Tecnica Financeira</h1>
+        <strong><nav>
+          <ul class="menu">
+              <li><a href="{{ url_for('index') }}">Home</a></li>
+              <li><a href="uploader">Carrega Arquivo</a></li>
+              <li><a href="arquivos">Lista arquivos carregados</a></li>
+          </ul>
+        </nav></strong>
+      </div>
+    </header>
+    <div class="container">
+          {% block content %}
+          {% endblock %}
+    </div>
+  </body>
+</html>

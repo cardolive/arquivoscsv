@@ -68,7 +68,6 @@ def uploaded_file(filename):
 
 @app.route('/mostra_arquivo', methods=['POST'])
 def arquivo_processado():
-
 	filename = request.form['filename']
 	tipo = request.form['tipo']
 	print(filename, tipo)
@@ -100,5 +99,5 @@ def arquivo_processado():
 @app.route('/arquivos')
 def arquivos():
 	lst_files = os.listdir(UPLOAD_FOLDER)
-	print(lst_files)
+	print("lista de arquivos salvos: ", lst_files)
 	return render_template('arquivos.html', files=lst_files)
