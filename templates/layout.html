@@ -1,36 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <style>
-   	table {
-   	  width:100%;
-   	}
-   	table, th, td {
-   	  border: 1px solid black;
-   	  border-collapse: collapse;
-   	}
-   	th, td {
-   	  padding: 15px;
-   	}
-   	th{
-   		text-align: center;
-   	}
-   	#t01 {
-   		 width:50%;
-   	}
-   	#t01 tr:nth-child(even) {
-   	  background-color: #eee;
-   	}
-   	#t01 tr:nth-child(odd) {
-   	 background-color: #fff;
-   	}
-   	#t01 th {
-   	  background-color: gray;
-   	  color: white;
-   	}
-   	</style>
 
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>FlaskBlog</title>
 </head>
+
   <body>
     <header>
       <div class="container">
