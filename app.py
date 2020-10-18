@@ -24,11 +24,11 @@ def hello_world():
 
 
 # no pronpt do windows:
-# set FLASK_APP=main.py (On Windows you need to use set instead of export)
+# set FLASK_APP=app.py (On Windows you need to use set instead of export)
 # set FLASK_ENV=development
 # flask run
 #  resposta:
-# * Serving Flask app "main.py" (lazy loading)
+# * Serving Flask app "app.py" (lazy loading)
 # * Environment: development
 # * Debug mode: on
 # * Restarting with stat
