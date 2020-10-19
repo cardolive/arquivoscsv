@@ -108,4 +108,6 @@ def arquivo_processado():
 def arquivos():
     lst_files = os.listdir(UPLOAD_FOLDER)
     print("lista de arquivos salvos: ", lst_files)
-    return render_template("arquivos.html", files=lst_files)
+    # listando somente arquivos csv
+    file_names = [fn for fn in lst_files if any(fn.endswith("csv") for ext in "csv")]
+    return render_template("arquivos.html", files=file_names)
