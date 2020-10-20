@@ -5,13 +5,13 @@ from flask import (flash, redirect, render_template, request,
                    send_from_directory, url_for)
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = "uploads"
+
 ALLOWED_EXTENSIONS = {"txt", "csv"}
 
 
 def init_app(app):
     """Factory de inicialização de extenções"""
-    app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+    
 
     @app.route("/hello")
     def hello_world():
