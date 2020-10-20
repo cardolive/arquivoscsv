@@ -1,34 +1,30 @@
 import csv
 import os
+
+from flask import (flash, redirect, render_template, request,
+                   send_from_directory, url_for)
 from werkzeug.utils import secure_filename
-from flask import (
-    render_template,
-    flash,
-    request,
-    redirect,
-    url_for,
-    send_from_directory,
-)
 
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"txt", "csv"}
 
+
 def init_app(app):
     """Factory de inicialização de extenções"""
     app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
     @app.route("/hello")
     def hello_world():
         return "Hello, World!"
-
 
     @app.route("/")
     def index():
         return render_template("index.html")
 
-
     def allowed_file(filename):
-        return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-
+        return (
+            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+        )
 
     @app.route("/uploader", methods=["GET", "POST"])
     def upload_file():
@@ -50,13 +46,11 @@ def init_app(app):
                 return redirect(url_for("uploaded_file", filename=filename))
         return render_template("upload.html")
 
-
     # salva o arquivo na pasta uploads
     @app.route("/uploads/<filename>")
     def uploaded_file(filename):
         # csv_to_dic(filename)
         return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
-
 
     @app.route("/mostra_arquivo", methods=["POST"])
     def arquivo_processado():
@@ -87,11 +81,12 @@ def init_app(app):
 
         return render_template("arquivos.html", linhas=linhas)
 
-
     @app.route("/arquivos")
     def arquivos():
         lst_files = os.listdir(UPLOAD_FOLDER)
         print("lista de arquivos salvos: ", lst_files)
         # listando somente arquivos csv
-        file_names = [fn for fn in lst_files if any(fn.endswith("csv") for ext in "csv")]
+        file_names = [
+            fn for fn in lst_files if any(fn.endswith("csv") for ext in "csv")
+        ]
         return render_template("arquivos.html", files=file_names)

@@ -1,5 +1,7 @@
+from flask import Flask
+
 from ext.site.view import views
-from flask import  Flask
+
 
 def create_app():
     """Factory principal"""

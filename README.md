@@ -22,12 +22,6 @@ pip freeze > requirements.txt ()
  <li> Debug mode: on</li>
  <li> Restarting with stat</li>
  <li> Debugger is active!</li>
- <li> Debugger PIN: 664-881-666</li>
+ <li> Debugger PIN: 999-999-999</li>
  <li> Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</li>
-</ul>
-
-<p>tutorias pesquisados:</p>
-
-<ul>
- <li> https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-pt</li>
 </ul>
