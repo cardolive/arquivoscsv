@@ -11,13 +11,13 @@ pip freeze > requirements.txt ()
 
 <p>Para rodar o Flask no pronpt do windows (On Windows you need to use set instead of export):</p>
 <ul>
-<li> set FLASK_APP=main.py </li>
+<li> set FLASK_APP=app/app.py </li>
 <li> set FLASK_ENV=development </li>
 <li>flask run</li>
 </ul>
 <h5>  Resposta: </h5>
 <ul>
- <li> Serving Flask app "main.py" (lazy loading)</li>
+ <li> Serving Flask app "app.py" (lazy loading)</li>
  <li> Environment: development</li>
  <li> Debug mode: on</li>
  <li> Restarting with stat</li>
