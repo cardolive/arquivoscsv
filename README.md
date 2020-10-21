@@ -1,15 +1,15 @@
-<p>gera o arquivo requerimentos</p>
+<h1>gera o arquivo requerimentos</h1>
 <ul>
 <li>
-pip freeze > requirements.txt ()
+    pip freeze > requirements.txt ()
 </li>
 </ul>
 <p> instala as dependencias do arquivo requerimento </p>
 <ul>
 <li>pip install -r requirements.txt</li>
 </ul>
-
-<p>Para rodar o Flask no pronpt do windows (On Windows you need to use set instead of export):</p>
+<hr>
+<h2>Para rodar o Flask no pronpt do windows (On Windows you need to use set instead of export):</h2>
 <ul>
 <li> set FLASK_APP=app/app.py </li>
 <li> set FLASK_ENV=development </li>
@@ -25,6 +25,8 @@ pip freeze > requirements.txt ()
  <li> Debugger PIN: 999-999-999</li>
  <li> Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</li>
 </ul>
+<hr>
+<h2>Contextos</h2>
 <ul>
     <li>contexto de confirguração </li>
     <ul>
@@ -43,3 +45,14 @@ pip freeze > requirements.txt ()
         <li>request, session</li>
     </ul>
 </ul>
+<hr>
+<h3>version = "0.1.0" # major, minor, patch (sequencia da versão)</h3>
+
+<h2>Dado um número de versão MAJOR.MINOR.PATCH, incremente a:</h2>
+<ul>
+    <li>versão Maior(MAJOR): quando fizer mudanças incompatíveis na API,</li>
+    <li>versão Menor(MINOR): quando adicionar funcionalidades mantendo compatibilidade, e</li>
+    <li>versão de Correção(PATCH): quando corrigir falhas mantendo compatibilidade.</li>
+</ul>
+<p>Rótulos adicionais para pré-lançamento(pre-release) e metadados de construção(build) estão disponíveis como extensão ao formato MAJOR.MINOR.PATCH.</p>
+<p>https://semver.org/lang/pt-BR/</p>
