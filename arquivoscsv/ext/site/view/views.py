@@ -1,17 +1,21 @@
 import csv
 import os
 
-from flask import (flash, redirect, render_template, request,
-                   send_from_directory, url_for)
+from flask import (
+    flash,
+    redirect,
+    render_template,
+    request,
+    send_from_directory,
+    url_for,
+)
 from werkzeug.utils import secure_filename
-
 
 ALLOWED_EXTENSIONS = {"txt", "csv"}
 
 
 def init_app(app):
     """Factory de inicialização de extenções"""
-    
 
     @app.route("/hello")
     def hello_world():
@@ -83,7 +87,8 @@ def init_app(app):
 
     @app.route("/arquivos")
     def arquivos():
-        lst_files = os.listdir(UPLOAD_FOLDER)
+        # app.config["UPLOAD_FOLDER"]
+        lst_files = os.listdir("../../../uploads")
         print("lista de arquivos salvos: ", lst_files)
         # listando somente arquivos csv
         file_names = [
