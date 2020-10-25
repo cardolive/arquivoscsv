@@ -11,7 +11,7 @@
 <hr>
 <h2>Para rodar o Flask no pronpt do windows (On Windows you need to use set instead of export):</h2>
 <ul>
-<li> set FLASK_APP=app/app.py </li>
+<li> set FLASK_APP=arquivoscsv/app.py </li>
 <li> set FLASK_ENV=development </li>
 <li>flask run</li>
 </ul>
