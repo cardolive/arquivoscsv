@@ -56,3 +56,12 @@
 </ul>
 <p>Rótulos adicionais para pré-lançamento(pre-release) e metadados de construção(build) estão disponíveis como extensão ao formato MAJOR.MINOR.PATCH.</p>
 <p>https://semver.org/lang/pt-BR/</p>
+
+<h2>Coding</h2>
+<ul>
+<li>use 4 spaces for indentation</li>
+<li>imports should go at the top of the file</li>
+<li>separate function definitions with two blank lines</li>
+<li>keep function definitions together</li>
+<li>keep top level statements, including function calls, together at the bottom of the program</li>
+</ul>
