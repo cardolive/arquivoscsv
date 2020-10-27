@@ -23,5 +23,14 @@ def test_pagina_inicial(client):
     assert client.get("/").status_code == 200
     
 
-def test_existe_pasta_upload(client):
-    assert client.get("/arquivoscsv/uploads").status_code == 200
+def test_pagina_upload(client):
+    assert client.get("/upload").status_code == 200
+    
+    
+def test_pagina_arquivos(client):
+    assert client.get("/arquivos").status_code == 200
+
+
+def test_script_loc(script_loc):
+    baseline = script_loc.join('uploads/empenhos.cvs')
+    print(baseline)

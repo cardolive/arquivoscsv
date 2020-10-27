@@ -4,8 +4,11 @@ from flask import Blueprint
 import csv
 import os
 
+
 bp = Blueprint("site", __name__)
 ALLOWED_EXTENSIONS = {"csv"}
+
+FILE_DIR = "files_upload"
 
 
 @bp.route("/")
@@ -25,7 +28,8 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@bp.route("/uploader", methods=["GET", "POST"])
+# Carrega Arquivo
+@bp.route("/carrega", methods=["GET", "POST"])
 def upload_file():
     """receive file from form and save it
 
@@ -45,14 +49,14 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             print("arquivo:", file.filename)
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(bp.config["UPLOAD_FOLDER"], filename))
+            filename = secure_filename(file.filename).lower()
+            file.save(os.path.join(FILE_DIR, filename))
             # return redirect(url_for("uploaded_file", filename=filename))
     return render_template("upload.html")
 
 
 @bp.route("/uploads/<filename>")
-def uploaded_file(filename):
+def show_file_by_name(filename):
     """[upload a file by name ]
 
     Args:
@@ -62,11 +66,11 @@ def uploaded_file(filename):
         [type]: [file]
     """
     # csv_to_dic(filename)
-    return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
+    return send_from_directory(FILE_DIR, filename)
 
 
 @bp.route("/mostra_arquivo", methods=["POST"])
-def arquivo_processado():
+def open_file_lines():
     """open a file by name and send all lines, except the header (frist line)
 
     Returns:
@@ -100,15 +104,15 @@ def arquivo_processado():
     return render_template("arquivos.html", linhas=linhas)
 
 
+# Lista arquivos carregados
 @bp.route("/arquivos")
-def arquivos():
+def files_list():
     """list all files .csv into the paste /uploads
 
     Returns:
         [type]: [description]
     """
-    # app.config["UPLOAD_FOLDER"]
-    lst_files = os.listdir("../../../uploads")
+    lst_files = os.listdir(FILE_DIR)
     print("lista de arquivos salvos: ", lst_files)
     # listando somente arquivos csv
     file_names = [fn for fn in lst_files if any(fn.endswith("csv") for ext in "csv")]

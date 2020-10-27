@@ -3,7 +3,7 @@
 {% block content %}
   <div class="upload">
       <h1>Carrega Arquivo</h1>
-      <form enctype = "multipart/form-data" method = "POST">
+      <form enctype = "multipart/form-data" method = "POST" action="carrega">
           <input accept=".csv,.txt" name = "file" type = "file"/>
           <input type = "submit" value="Carrega"/>
        </form>
