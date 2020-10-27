@@ -7,19 +7,27 @@ import os
 bp = Blueprint("site", __name__)
 ALLOWED_EXTENSIONS = {"csv"}
 
+
 @bp.route("/")
 def index():
     return render_template("index.html")
 
 
 def allowed_file(filename):
-        return (
-            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-        )
+    """[list of allowed extensions of file]
+
+    Args:
+        filename ([type]): [str]
+
+    Returns:
+        [type]: [list]
+    """
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @bp.route("/uploader", methods=["GET", "POST"])
 def upload_file():
-    """[summary]
+    """receive file from form and save it
 
     Returns:
         [type]: [renderiza a pagina com o arquivo salvo]
@@ -41,3 +49,67 @@ def upload_file():
             file.save(os.path.join(bp.config["UPLOAD_FOLDER"], filename))
             # return redirect(url_for("uploaded_file", filename=filename))
     return render_template("upload.html")
+
+
+@bp.route("/uploads/<filename>")
+def uploaded_file(filename):
+    """[upload a file by name ]
+
+    Args:
+        filename ([type]): [str]
+
+    Returns:
+        [type]: [file]
+    """
+    # csv_to_dic(filename)
+    return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
+
+
+@bp.route("/mostra_arquivo", methods=["POST"])
+def arquivo_processado():
+    """open a file by name and send all lines, except the header (frist line)
+
+    Returns:
+        [type]: [list]
+    """
+    filename = request.form["filename"]
+    tipo = request.form["tipo"]
+    print(filename, tipo)
+    line_count = 0
+    chaves = []
+    linhas = []
+
+    with open("uploads/" + filename) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=";")
+
+        for row in csv_reader:
+            if line_count == 0:
+                print("total de colunas: ", len(row))
+                print(f'Nomes das colunas: {", ".join(row)}')
+                chaves = ", ".join(row)
+            else:
+                linhas.append(row)
+            # print(row)
+            line_count += 1
+
+    print(f"Total de linhas processadas: {line_count}.")
+
+    for lin in linhas:
+        print(lin[:10])
+
+    return render_template("arquivos.html", linhas=linhas)
+
+
+@bp.route("/arquivos")
+def arquivos():
+    """list all files .csv into the paste /uploads
+
+    Returns:
+        [type]: [description]
+    """
+    # app.config["UPLOAD_FOLDER"]
+    lst_files = os.listdir("../../../uploads")
+    print("lista de arquivos salvos: ", lst_files)
+    # listando somente arquivos csv
+    file_names = [fn for fn in lst_files if any(fn.endswith("csv") for ext in "csv")]
+    return render_template("arquivos.html", files=file_names)

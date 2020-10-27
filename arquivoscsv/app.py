@@ -1,6 +1,7 @@
 from flask import Flask
 from .ext import site
-UPLOAD_FOLDER = "/uploads"
+from .ext import toolbar
+from .ext import config
 
 
 def create_app():
@@ -10,6 +11,7 @@ def create_app():
         [type]: [app]
     """
     app = Flask(__name__)
-    app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+    config.init_app(app)
+    toolbar.init_app(app)
     site.init_app(app)
     return app

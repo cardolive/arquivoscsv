@@ -58,6 +58,11 @@ def init_app(app):
 
     @app.route("/mostra_arquivo", methods=["POST"])
     def arquivo_processado():
+        """open a file by name and send all lines, except the header (frist line) 
+
+        Returns:
+            [type]: [list]
+        """
         filename = request.form["filename"]
         tipo = request.form["tipo"]
         print(filename, tipo)
