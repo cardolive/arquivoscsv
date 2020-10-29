@@ -1,14 +1,15 @@
-from .ext.db import atf
+from .ext.db import db
 
-class Sub_Centro(atf.Model):
+
+class Sub_Centro(db.Model):
     __tablename__ = "sub_centro"
-    id = atf.Column("id", atf.Integer, primary_key=True)
-    nome = atf.Column("nome", atf.Unicode, unique=True)
-    dtaalt = atf.Column("dtaalt", atf.DateTime)
-    codpesalt = atf.Column("codpesalt", atf.Integer)
+    id = db.Column("id", db.Integer, primary_key=True)
+    nome = db.Column("nome", db.Unicode, unique=True)
+    dtaalt = db.Column("dtaalt", db.DateTime)
+    codpesalt = db.Column("codpesalt", db.Integer)
 
         
     def __init__(self, nome, dtaalt, codpesalt):
-	self.nome = nome
-	self.dtaalt = dtaalt
+        self.nome = nome
+        self.dtaalt = dtaalt
         self.codpesalt = codpesalt
