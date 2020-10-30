@@ -1,4 +1,4 @@
-from .ext.db import db
+from arquivoscsv.arquivoscsv.ext import db
 
 
 class Sub_Centro(db.Model):

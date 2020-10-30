@@ -1,4 +1,5 @@
-from .ext.db import db
+from arquivoscsv.arquivoscsv.ext import db
+
 
 class Secao(db.Model):
     __tablename__ = "secao"

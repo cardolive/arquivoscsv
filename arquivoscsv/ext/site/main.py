@@ -1,14 +1,19 @@
 from flask import request, render_template, flash, redirect
-from werkzeug.utils import secure_filename
 from flask import Blueprint
+from werkzeug.utils import secure_filename
 import csv
 import os
+
 
 
 bp = Blueprint("site", __name__)
 ALLOWED_EXTENSIONS = {"csv"}
 
-FILE_DIR = "files_upload"
+#from flask import current_app
+#FILE_DIR = current_app["UPLOAD_FOLDER"]
+
+FILE_DIR = 'arquivoscsv\\files_upload'
+
 
 
 @bp.route("/")
@@ -83,7 +88,7 @@ def open_file_lines():
     chaves = []
     linhas = []
 
-    with open("uploads/" + filename) as csv_file:
+    with open(FILE_DIR + "\\" + filename) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=";")
 
         for row in csv_reader:

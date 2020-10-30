@@ -15,7 +15,7 @@ def create_app():
     """
     app = Flask(__name__) # topo da inicialização
     config.init_app(app) # depois de iniciar a app
-    db.init_app(app)
+    db.init_app(app) # carraga o bd
     cli.init_app(app) # depois de iniciar o db
     toolbar.init_app(app) # debug de paginas web, antes de inicar o site
     site.init_app(app)

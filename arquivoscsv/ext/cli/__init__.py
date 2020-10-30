@@ -1,16 +1,14 @@
 from arquivoscsv.arquivoscsv.ext import db
+import click
 
 def init_app(app):
     @app.cli.command()
     def create_db():
         """cria o banco de dados"""
-        try:
-            db.create_all()
-        except expression as identifier:
-            pass
-        
+        db.create_all()
+       
                 
     @app.cli.command()
     def listar_centros():
         """lista centros"""
-        return "lista de centros"
+        click.echo("lista de centros")
