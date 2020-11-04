@@ -1,0 +1,1 @@
+FLASK_APP=arquivoscsv/app.py

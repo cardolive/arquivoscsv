@@ -5,15 +5,13 @@ import csv
 import os
 
 
-
 bp = Blueprint("site", __name__)
 ALLOWED_EXTENSIONS = {"csv"}
 
-#from flask import current_app
-#FILE_DIR = current_app["UPLOAD_FOLDER"]
+# from flask import current_app
+# FILE_DIR = current_app["UPLOAD_FOLDER"]
 
-FILE_DIR = 'arquivoscsv\\files_upload'
-
+FILE_DIR = "arquivoscsv\\files_upload"
 
 
 @bp.route("/")
